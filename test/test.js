@@ -9,19 +9,25 @@ describe('', function () {
   it('', function() {
     let structureOne = function() {
       const shortenUrl = () => {
-        renderRawResponse(xhr.response)
+        fetch(_).then(_)
+        .then(jsonResponse => {
+          renderRawResponse(jsonResponse)
+        })
       }
-    };
+    }
 
     let structureTwo = function() {
       const shortenUrl = () => {
-        renderResponse(xhr.response)
+        fetch(_).then(_)
+        .then(jsonResponse => {
+          renderResponse(jsonResponse)
+        })
       }
-    };
+    }
 
     let isMatchOne = Structured.match(code, structureOne);
     let isMatchTwo = Structured.match(code, structureTwo);
-    assert.isNotOk(isMatchOne, 'Did you put delete `renderRawResponse` inside the parenthesis of `xhr.send()`?');
-    assert.isOk(isMatchTwo, 'Did you call `renderResponse(xhr.response)` inside `shortenUrl()`?')
+    assert.isNotOk(isMatchOne, 'Did you delete `renderRawResponse(jsonResponse)`?')
+    assert.isOk(isMatchTwo, 'Did you call `renderResponse()` with `jsonResponse` as an argument?')
   });
 });
